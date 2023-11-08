@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 500px;
+            margin-top: 20px;
+        }
+
+        input[type=email], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+          }
+          
+          input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+          
+          input[type=submit]:hover {
+            background-color: #45a049;
+          }
+
+          h1{
+            text-align: center;
+            color: blue;
+          }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>System Login</h1>
+        <form>
+            <label for="email">Enter email:</label>
+            <input oninvalid="InvalidMsgEmail(this);" oninput="InvalidMsgEmail(this);" type="email" 
+                   id="txtEmail" 
+                   name="txtEmail" required>
+            <label for="txtPassword">Enter Password:</label>
+            <input oninvalid="InvalidMsgPass(this);" oninput="InvalidMsgPass(this);" type="password" id="txtPassword" 
+                   name="txtPassword"
+                   pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$" required>
+            <input type="submit" value="Login" id="btnLogin" name="btnLogin">
+        </form>
+    </div>
+
+    <script>
+        function InvalidMsgEmail(textbox) {
+            if (textbox.value === '') {
+                 textbox.setCustomValidity('Bạn phải nhập địa chỉ email!');
+            } else 
+                  if (textbox.validity.typeMismatch) {
+                     textbox.setCustomValidity('Địa chỉ email không đúng định dạng !');
+                  } else {
+                     textbox.setCustomValidity('');
+            }
+            return true;
+        }
+
+        function InvalidMsgPass(textbox) {
+            if (textbox.value === '') {
+                 textbox.setCustomValidity('Bạn phải nhập mật khẩu!');
+            } else 
+                  if (textbox.validity.patternMismatch) {
+                     textbox.setCustomValidity('Mật khẩu không đúng định dạng !');
+                  } else {
+                     textbox.setCustomValidity('');
+            }
+            return true;
+        }
+        </script>
+</body>
+</html>
